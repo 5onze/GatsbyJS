@@ -9,6 +9,7 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

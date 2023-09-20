@@ -3,15 +3,23 @@ import Layout from "components/Layout";
 import Seo from "components/Seo";
 import React from "react";
 
-const Blog = ({ data }: PageProps<Queries.BlogTitlesQuery>) => {
+const Blog = ({ data }: PageProps<Queries.BlogPostsQuery>) => {
   console.log(data);
   return (
     <Layout title="Blog">
-      <ul>
-        {data.allFile.nodes.map((title) => (
-          <li key={title.name}>{title.name}</li>
+      <section>
+        {data.allMdx.nodes.map((file, idx) => (
+          <article key={idx}>
+            <h3>{file.frontmatter?.title}</h3>
+            <h5>
+              {file.frontmatter?.author} in: {file.frontmatter?.category}
+            </h5>
+            <h6>{file.frontmatter?.date}</h6>
+            <hr />
+            <p>{file.excerpt}</p>
+          </article>
         ))}
-      </ul>
+      </section>
     </Layout>
   );
 };
@@ -21,11 +29,18 @@ export default Blog;
 export const Head = () => <Seo title="Blog" />;
 
 export const query = graphql`
-  query BlogTitles {
-    allFile {
+  query BlogPosts {
+    allMdx {
       nodes {
-        name
-        ext
+        frontmatter {
+          slug
+          title
+          date(formatString: "YYYY.MM.DD")
+          category
+          author
+        }
+        excerpt(pruneLength: 30)
+        body
       }
     }
   }
