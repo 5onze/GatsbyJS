@@ -1,9 +1,23 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 
 interface ISeoProps {
   title: string;
 }
 
 export default function Seo({ title }: ISeoProps) {
-  return <title>{title} | whirlpoolgreen's Blog </title>;
+  const data = useStaticQuery(graphql`
+    query SeoData {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+  return (
+    <title>
+      {title} | {data.site?.siteMetadata?.title}
+    </title>
+  );
 }

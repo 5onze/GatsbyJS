@@ -31,7 +31,7 @@
   },
 
   "include": [
-    "src/**/*.tsx",
+    "./src/**/*.tsx",
     "./gatsby-node.ts",
     "./gatsby-config.ts",
     "./plugins/**/*"
