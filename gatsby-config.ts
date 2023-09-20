@@ -2,7 +2,7 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: "밍구 블로그",
+    title: "whirlpool's Blog",
     siteUrl: `https://www.yourdomain.tld`,
     description: "Buy the best stickers",
   },
@@ -13,7 +13,13 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `data`,
-        path: `${__dirname}/static/`,
+        path: `${__dirname}/blog-posts`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-emoji`],
       },
     },
   ],

@@ -34,7 +34,8 @@
     "./src/**/*.tsx",
     "./gatsby-node.ts",
     "./gatsby-config.ts",
-    "./plugins/**/*"
+    "./plugins/**/*",
+    "./src/gatsby-types.d.ts"
   ],
   "exclude": ["node_modules", "public", ".cache"]
 }

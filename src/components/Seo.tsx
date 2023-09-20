@@ -6,7 +6,7 @@ interface ISeoProps {
 }
 
 export default function Seo({ title }: ISeoProps) {
-  const data = useStaticQuery(graphql`
+  const data = useStaticQuery<Queries.SeoDataQuery>(graphql`
     query SeoData {
       site {
         siteMetadata {
