@@ -1,22 +1,23 @@
-import { graphql, PageProps } from "gatsby";
+import { graphql, Link, PageProps } from "gatsby";
 import Layout from "components/Layout";
 import Seo from "components/Seo";
 import React from "react";
 
 const Blog = ({ data }: PageProps<Queries.BlogPostsQuery>) => {
-  console.log(data);
   return (
     <Layout title="Blog">
       <section>
-        {data.allMdx.nodes.map((file, idx) => (
+        {data.allMdx.nodes.map((mdx, idx) => (
           <article key={idx}>
-            <h3>{file.frontmatter?.title}</h3>
-            <h5>
-              {file.frontmatter?.author} in: {file.frontmatter?.category}
-            </h5>
-            <h6>{file.frontmatter?.date}</h6>
-            <hr />
-            <p>{file.excerpt}</p>
+            <Link to={`/blog/${mdx.frontmatter?.slug}`}>
+              <h3>{mdx.frontmatter?.title}</h3>
+              <h5>
+                {mdx.frontmatter?.author} in: {mdx.frontmatter?.category}
+              </h5>
+              <h6>{mdx.frontmatter?.date}</h6>
+              <hr />
+              <p>{mdx.excerpt}</p>
+            </Link>
           </article>
         ))}
       </section>
